@@ -4,27 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dynamic City Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    h1 {
+      color: #0077cc;
+    }
+  </style>
 </head>
-<body style="font-family: Arial, sans-serif; text-align: center; margin-top: 50px;">
-  <p>You are hacked and your name is</p>
-  <h1 id="city-name"></h1>
+<body>
+
+  <h1 id="city-name">Loading...</h1>
+  <p>You are hacked and your information is leaked. Your address is:</p>
 
   <script>
-    // Full path: e.g. /test_website_html/Boston
-    const pathParts = window.location.pathname.split("/");
+    // Read the query string (e.g., ?city=Boston)
+    const params = new URLSearchParams(window.location.search);
 
-    // Find the part after "test_website_html"
-    const repoName = "test_website_html";
-    const repoIndex = pathParts.indexOf(repoName);
+    // Get the value of "city"
+    const city = params.get("city");
 
-    // Get the next part (Boston, NewYork, etc.)
-    let city = "";
-    if (repoIndex !== -1 && pathParts.length > repoIndex + 1) {
-      city = pathParts[repoIndex + 1];
-    }
-
-    // Display it
-    document.getElementById("city-name").textContent = city || "No city found";
+    // Display it (fallback if missing)
+    document.getElementById("city-name").textContent =
+      city ? city : "No city provided";
   </script>
 
 </body>
