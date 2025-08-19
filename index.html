@@ -6,18 +6,25 @@
   <title>Dynamic City Page</title>
 </head>
 <body style="font-family: Arial, sans-serif; text-align: center; margin-top: 50px;">
-
+  <p>You are hacked and your name is</p>
   <h1 id="city-name"></h1>
 
   <script>
-    // Get the full URL path (e.g., /xyz/Boston/)
+    // Full path: e.g. /test_website_html/Boston
     const pathParts = window.location.pathname.split("/");
 
-    // Take the last non-empty part ("Boston")
-    const city = pathParts.filter(Boolean).pop();
+    // Find the part after "test_website_html"
+    const repoName = "test_website_html";
+    const repoIndex = pathParts.indexOf(repoName);
 
-    // Insert into the page
-    document.getElementById("city-name").textContent = city;
+    // Get the next part (Boston, NewYork, etc.)
+    let city = "";
+    if (repoIndex !== -1 && pathParts.length > repoIndex + 1) {
+      city = pathParts[repoIndex + 1];
+    }
+
+    // Display it
+    document.getElementById("city-name").textContent = city || "No city found";
   </script>
 
 </body>
