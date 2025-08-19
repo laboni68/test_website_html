@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic City Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    h1 {
+      color: #0077cc;
+    }
+  </style>
+</head>
+<body>
+ <p>You are hacked and your information is leaked. Your address is:</p>
+  <h1 id="city-name">Loading...</h1>
+  <script>
+    // Read the query string (e.g., ?city=Boston)
+    const params = new URLSearchParams(window.location.search);
+
+    // Get the value of "city"
+    const city = params.get("city");
+
+    // Display it (fallback if missing)
+    document.getElementById("city-name").textContent =
+      city ? city : "No city provided";
+  </script>
+
+</body>
+</html>
